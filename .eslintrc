@@ -60,11 +60,14 @@
         "plugin:@typescript-eslint/recommended-requiring-type-checking"
       ],
       "rules": {
-        // This rule is already covered by the TypeScript compiler.
         "import/default": "off",
-        // This rule is already covered by the TypeScript compiler.
         "import/no-unresolved": "off",
         "no-use-before-define": "off",
+        "semi": ["error", "never"],
+        "comma-dangle": ["error", "never"],
+        "max-len": ["error", { "code": 98 }],
+        "indent": [2, 2, { "SwitchCase": 1}],
+        "no-tabs": 0,
         "@typescript-eslint/no-use-before-define": "warn",
         "react/jsx-filename-extension": "off",
         "import/extensions": [
