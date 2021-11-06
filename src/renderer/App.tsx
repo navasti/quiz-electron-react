@@ -37,24 +37,30 @@ export default function App(): JSX.Element {
   }
 
   return (
-    <div>
-      <pre>{selectedAnswer}</pre>
+    <main className="main-wrapper">
       <Header
         score={score}
         totalQuestions={TOTAL_QUESTIONS}
         currentQuestion={currentQuestion}
       />
-      <h1>{question?.question || 'loading'}</h1>
-      {question?.answers.map((answer, index) => (
-        <QuestionCard
-          answer={answer}
-          selectAnswer={(answer) => handleSelectAnswer(answer)}
-          key={`answer-${index}`}
-        />
-      ))}
-      <button onClick={handleSubmitAnswer} disabled={!selectedAnswer}>
-        submit
+      <h1 className="question">{question?.question || 'loading'}</h1>
+      <section className="cards">
+        {question?.answers.map((answer, index) => (
+          <QuestionCard
+            answer={answer}
+            selected={selectedAnswer}
+            selectAnswer={(answer) => handleSelectAnswer(answer)}
+            key={`answer-${index}`}
+          />
+        ))}
+      </section>
+      <button
+        className="submit-button"
+        onClick={handleSubmitAnswer}
+        disabled={!selectedAnswer}
+      >
+        Submit
       </button>
-    </div>
+    </main>
   )
 }

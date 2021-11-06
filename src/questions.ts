@@ -111,7 +111,7 @@ export default [
     points: 50000,
     question: 'In total, how many novels were written by the Bronte sisters?',
     correctAnswer: '7',
-    answers: ['4', '7', '6', '7']
+    answers: ['4', '5', '6', '7']
   },
   {
     difficulty: 4,

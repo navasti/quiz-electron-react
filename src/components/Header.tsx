@@ -8,14 +8,14 @@ interface HeaderProps {
 
 export default function Header(props: HeaderProps): JSX.Element {
   return (
-    <header>
-      <div className="score">
-        <p>Score: {props.score}</p>
-      </div>
+    <header className="header">
       <div className="stage">
         <p>
           Question {props.currentQuestion} of {props.totalQuestions}
         </p>
+      </div>
+      <div className="score">
+        <p>Score: {props.score}</p>
       </div>
     </header>
   )

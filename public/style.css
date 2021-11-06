@@ -1,3 +1,74 @@
-.app {
-  color: grey;
+*, *::before, *::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  font-family: 'Arial', 'sans-serif';
+  font-size: 10px;
+  color: #111;
+}
+
+.main-wrapper {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 4rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header p {
+  font-size: 1.3rem;
+}
+
+.question {
+  margin: 1rem 0;
+  font-size: 2.2rem;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+  grid-template-rows: 2fr 2fr;
+  grid-gap: 0.8rem;
+}
+
+.cards .card {
+  padding: 1.2rem;
+  font-size: 1.6rem;
+  border-radius: 0.5rem;
+  border: 1px solid hotpink;
+  transition: all .2s linear;
+  cursor: pointer;
+}
+
+.cards .card.active {
+  background: hotpink;
+}
+
+.cards .card:hover {
+  background: hotpink;
+}
+
+.submit-button {
+  color: #111;
+  width: 130px;
+  cursor: pointer;
+  margin: 1.2rem auto 0 auto;
+  padding: 1rem;
+  font-size: 1.3rem;
+  border-radius: 0.5rem;
+  border: 1px solid #111;
+  transition: all .2s linear;
+}
+
+.submit-button:hover {
+  background: #111;
+  color: #eee;
 }
