@@ -16,6 +16,8 @@ export const checkIfAnswerCorrect = (answer: string, question: QuestionI) => {
   return question.correctAnswer === answer
 }
 
+export const isLastQuestion = (question: number) => question === TOTAL_QUESTIONS
+
 export const getDifficultyLevel = (currentQuestion: number) => {
   if (currentQuestion <= 2) return 1
   else if (currentQuestion > 2 && currentQuestion <= 4) return 2

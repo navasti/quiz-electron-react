@@ -7,7 +7,8 @@ import {
   TOTAL_QUESTIONS,
   checkIfAnswerCorrect,
   getDifficultyLevel,
-  prepareQuestion
+  prepareQuestion,
+  isLastQuestion
 } from '_/utils'
 
 export default function App(): JSX.Element {
@@ -16,6 +17,7 @@ export default function App(): JSX.Element {
   const [currentQuestion, setCurrentQuestion] = useState(1)
   const [question, setQuestion] = useState<null | QuestionI>(null)
   const [selectedAnswer, setSelectedAnswer] = useState<null | string>(null)
+  const [gameFinished, setGameFinished] = useState(false)
 
   useEffect(() => setQuestion(prepareQuestion(difficulty)), [])
 
@@ -25,6 +27,10 @@ export default function App(): JSX.Element {
     if (!selectedAnswer || !question) return
     const isAnswerCorrect = checkIfAnswerCorrect(selectedAnswer, question)
     if (isAnswerCorrect) {
+      if (isLastQuestion(currentQuestion)) {
+        setGameFinished(true)
+        return
+      }
       const nextQuestionNumber = currentQuestion + 1
       const nextDifficultLevel = getDifficultyLevel(nextQuestionNumber)
       const nextQuestion = prepareQuestion(nextDifficultLevel, question)
