@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { useEffect, useState } from 'react'
 import QuestionCard from '_/components/QuestionCard'
+import ResultsModal from '_/components/ResultsModal'
 import Header from '_/components/Header'
 import {
   QuestionI,
@@ -17,18 +18,28 @@ export default function App(): JSX.Element {
   const [currentQuestion, setCurrentQuestion] = useState(1)
   const [question, setQuestion] = useState<null | QuestionI>(null)
   const [selectedAnswer, setSelectedAnswer] = useState<null | string>(null)
-  const [gameFinished, setGameFinished] = useState(false)
+  const [gameWon, setGameWon] = useState(false)
+  const [gameLost, setGameLost] = useState(false)
 
   useEffect(() => setQuestion(prepareQuestion(difficulty)), [])
 
   const handleSelectAnswer = (question: string) => setSelectedAnswer(question)
+  const resetGameState = () => {
+    setScore(0)
+    setDifficulty(1)
+    setGameWon(false)
+    setGameLost(false)
+    setCurrentQuestion(1)
+    setSelectedAnswer(null)
+    setQuestion(prepareQuestion(1))
+  }
 
   const handleSubmitAnswer = () => {
     if (!selectedAnswer || !question) return
     const isAnswerCorrect = checkIfAnswerCorrect(selectedAnswer, question)
     if (isAnswerCorrect) {
       if (isLastQuestion(currentQuestion)) {
-        setGameFinished(true)
+        setGameWon(true)
         return
       }
       const nextQuestionNumber = currentQuestion + 1
@@ -39,11 +50,18 @@ export default function App(): JSX.Element {
       setDifficulty(nextDifficultLevel)
       setSelectedAnswer(null)
       setQuestion(nextQuestion)
-    }
+    } else setGameLost(true)
   }
 
   return (
     <main className="main-wrapper">
+      <ResultsModal
+        score={score}
+        gameWon={gameWon}
+        active={gameLost || gameWon}
+        resetGame={() => resetGameState()}
+        currentQuestion={currentQuestion}
+      />
       <Header
         score={score}
         totalQuestions={TOTAL_QUESTIONS}
@@ -61,7 +79,7 @@ export default function App(): JSX.Element {
         ))}
       </section>
       <button
-        className="submit-button"
+        className="btn submit-button"
         onClick={handleSubmitAnswer}
         disabled={!selectedAnswer}
       >

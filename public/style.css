@@ -42,10 +42,11 @@ html {
 .cards .card {
   padding: 1.2rem;
   font-size: 1.6rem;
-  border-radius: 0.5rem;
   border: 1px solid hotpink;
-  transition: all .2s linear;
-  cursor: pointer;
+}
+
+.cards .card:focus {
+  border-color: hotpink;
 }
 
 .cards .card.active {
@@ -56,19 +57,50 @@ html {
   background: hotpink;
 }
 
-.submit-button {
-  color: #111;
-  width: 130px;
-  cursor: pointer;
-  margin: 1.2rem auto 0 auto;
+.btn {
   padding: 1rem;
   font-size: 1.3rem;
   border-radius: 0.5rem;
-  border: 1px solid #111;
+  cursor: pointer;
   transition: all .2s linear;
 }
 
+.submit-button {
+  background: #444;
+  color: #fff;
+  width: 130px;
+  margin: 1.2rem auto 0 auto;
+  border: 1px solid #444;
+}
+
 .submit-button:hover {
-  background: #111;
-  color: #eee;
+  background: #222;
+  color: hotpink;
+}
+
+.result-modal {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0; left: 0;
+  background: rgba(0, 0, 0, 0.9);
+  color: #fff;
+  display: none;
+}
+
+.result-modal.active {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.result-info {
+  font-size: 2.4rem;
+  letter-spacing: 1px;
+}
+
+.score-info {
+  font-size: 1.6rem;
+  margin: 1rem 0;
 }
